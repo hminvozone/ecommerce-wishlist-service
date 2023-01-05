@@ -20,7 +20,7 @@ public class WishlistService implements IWishlistService {
 
     @Override
     public WishList getWishList(Long id) {
-        WishList wishlist = wishlistRepository.getById(id);
+        WishList wishlist = wishlistRepository.getByUserId(id);
         return wishlist;
     }
 

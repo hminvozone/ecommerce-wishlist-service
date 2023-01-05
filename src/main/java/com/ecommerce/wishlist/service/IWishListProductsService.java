@@ -6,4 +6,8 @@ public interface IWishListProductsService {
 
     GetWishListProductsResponse getWishListProducts(Long id);
 
+    void addProduct(Long wishlist_id, Long product_id) throws Exception;
+
+    void removeProduct(Long wishlist_id, Long product_id) throws Exception;
+
 }
