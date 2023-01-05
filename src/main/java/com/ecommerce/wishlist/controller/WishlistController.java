@@ -43,12 +43,12 @@ public class WishlistController {
     @PostMapping("/{user_id}")
     @Operation(summary = "Create a wishlist for a user using the user_id provided in request params")
     @ApiResponses({
-            @ApiResponse(responseCode = "200"),
+            @ApiResponse(responseCode = "204"),
             @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(schema = @Schema(hidden = true))),
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(schema = @Schema(hidden = true))),
             @ApiResponse(responseCode = "406", description = "Not Acceptable", content = @Content(schema = @Schema(hidden = true)))
     })
-    public ResponseEntity<Void> createWishlist(@NotNull @PathVariable("user_id") Long user_id){
+    public ResponseEntity<Void> createWishlist(@NotNull @PathVariable("user_id") Long user_id) throws Exception {
         this.iWishlistService.createWishlist(user_id);
         return ResponseEntity.noContent().build();
     }
