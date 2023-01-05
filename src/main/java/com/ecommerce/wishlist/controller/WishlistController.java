@@ -28,7 +28,7 @@ public class WishlistController {
         this.iWishlistService = iWishlistService;
     }
 
-    @GetMapping("/{wishlist_id}")
+    @GetMapping("/{user_id}")
     @Operation(summary = "View a wishlist using the wishlist_id provided in request params")
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(implementation = WishList.class))),
@@ -36,8 +36,8 @@ public class WishlistController {
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(schema = @Schema(hidden = true))),
             @ApiResponse(responseCode = "406", description = "Not Acceptable", content = @Content(schema = @Schema(hidden = true)))
     })
-    public ResponseEntity<WishList> getWishListById(@NotNull @PathVariable("wishlist_id") Long wishlist_id){
-        return (ResponseEntity.ok()).body(this.iWishlistService.getWishList(wishlist_id));
+    public ResponseEntity<WishList> getWishListById(@NotNull @PathVariable("user_id") Long user_id){
+        return (ResponseEntity.ok()).body(this.iWishlistService.getWishList(user_id));
     }
 
     @PostMapping("/{user_id}")

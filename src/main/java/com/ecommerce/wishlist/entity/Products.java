@@ -16,12 +16,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
-@Table(name = "wishlist")
+@Table(name = "products")
 @Entity
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
@@ -29,22 +26,30 @@ import java.util.Date;
 @Builder(toBuilder = true)
 @Setter()
 @Getter()
-public class WishList {
+public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, insertable = false, updatable = false)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    @Column(name = "product_name", nullable = false)
     @NotNull
-    private User user;
+    private String product_name;
 
-    @Temporal(value = TemporalType.TIMESTAMP)
-    @Column(name = "created_at", nullable = true)
-    private Date created_at;
+    @Column(name = "thumbnail", nullable = true)
+    private String thumbnail;
 
-    @Temporal(value = TemporalType.TIMESTAMP)
-    @Column(name = "updated_at", nullable = true)
-    private Date updated_at;
+    @Column(name = "description", nullable = true)
+    private String description;
+
+    @Column(name = "price", nullable = true)
+    private Integer price;
+
+    @Column(name = "discount_price", nullable = true)
+    private Integer discount_price;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
+    @NotNull
+    private Categories categories;
 }
